@@ -47,10 +47,16 @@ services:
     restart: never
   
   jmaster:
-    build: ./jenkins/
+    build: 
+      context: ./jenkins
+      args:
+        JENKINS_UID: 1000
+        JENKINS_GID: 1000
     hostname: jenkins.local
     environment:
       JAVA_OPTS: "-Djava.awt.headless=true"
+      JENKINS_UID: "1000"
+      JENKINS_GID: "1000"
     ports:
       - "50000:50000"
       - "8080:8080"
@@ -58,5 +64,14 @@ services:
       - gitlab:gitlab.local
       - tomcatqa:tomcat.local
       - tomcatprod:tomcat.prod
+    volumes_from:
+      - data
+
+  data:
+    image: alpine
+    user: root
     volumes:
-      - ./data/jenkins/data:/var/jenkins_home
+      - ./data/jenkins:/var/jenkins_home
+    command: /bin/chown -R 1000:1000 /var/jenkins_home
+
+
