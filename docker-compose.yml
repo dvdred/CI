@@ -64,6 +64,9 @@ services:
       - gitlab:gitlab.local
       - tomcatqa:tomcat.local
       - tomcatprod:tomcat.prod
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker:ro
     volumes_from:
       - data
 

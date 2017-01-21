@@ -1,27 +1,26 @@
 # CI
 Continuos Integration
 
-
 # Stack:
 ## - gitlab
-## - jenkins
-### (jenkins can be configured to connect to local docker daemon to spawn slaves)
+## - jenkins master
+### (jenkins can be configured to be connected to the local docker daemon)
 ## - tomcat (QA)
 ## - tomcat (PROD)
 ## - jenkins slave
-### as a spawning contaienr, exiting 0 during compose up
+### as a spawning contaienr, exit 0 after  docker-compose up
 
 
 # Persistent data:
-## All the persistent data goes in i```./data``` folder, created during the firs build. For backup purpose just stop running composition and compress that folder.
+## All the persistent data goes in the ```./data``` folder. For backup purpose just stop running composition and save that folder.
 ### ./data is not tracked in git commits cause is present in .gitignore
 
 
 # Default credntial:
 ## 1) Gitlab
-### - None, ```admin``` is initialized on the first access
+### - None, the password for the user ```admin``` is initialized on the first access
 ## 2) Jenkins: 
-### - Default (read documentation)
+### - Auto generated during the firs start. (it will be printed in the jenkis master container logs)
 ## 3) Jenkins slave:
 ### - use jenkins master ssh key
 ## 4) Tomcat QA:
@@ -35,8 +34,27 @@ Continuos Integration
 ```
 127.0.0.1       gitlab jenkins gitlab.local jenkins.local tomcat.dev tomcat.prod
 ```
-## - ssh config: add next lines in ```~/.ssh/config``` to make easyer use gitlab:
+## - ssh config: add next lines in ```~/.ssh/config``` to make easyer use of gitlab:
 ```
 Host gitlab.local
     Port 1122
+```
+
+# EXTRA
+## - to configure jenkins master to connect to docker daemon with network socket, docker daemon must be configured to listen to the network.
+### This is a sample with systemd dropin unit file, as root copy and paste next command:
+```
+systemctl stop docker
+mkdir /etc/systemd/system/docker.service.d/
+```
+```
+# cat >"/etc/systemd/system/docker.service.d/daemon.conf"<<'EOF'
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H tcp://127.0.0.1:4243 -H unix:///var/run/docker.sock
+EOF
+```
+```
+systemctl daemon-reload
+systemctl start docker
 ```
