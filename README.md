@@ -1,5 +1,5 @@
 # CI
-Continuos Integration
+### Continuos Integration
 
 # Stack:
 ## - gitlab
@@ -16,7 +16,7 @@ Continuos Integration
 ### ./data is not tracked in git commits cause is present in .gitignore
 
 
-# Default credntial:
+# Default credential:
 ## 1) Gitlab
 ### - None, the password for the user ```admin``` is initialized on the first access
 ## 2) Jenkins: 
