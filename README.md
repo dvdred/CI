@@ -34,7 +34,7 @@
 ```
 127.0.0.1       gitlab jenkins gitlab.local jenkins.local tomcat.dev tomcat.prod
 ```
-## - ssh config: add next lines in ```~/.ssh/config``` to make easyer use of gitlab:
+## - ssh config: add next lines in ```~/.ssh/config``` to make easier use of gitlab:
 ```
 Host gitlab.local
     Port 1122
