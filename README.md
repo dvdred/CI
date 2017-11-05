@@ -17,15 +17,15 @@
 
 
 # Default credential:
-## 1) Gitlab
+## 1) Gitlab: (http://localhost:1180)
 ### - None, the password for the user ```admin``` is initialized on the first access
-## 2) Jenkins: 
+## 2) Jenkins: (http://localhost:8080)
 ### - Auto generated during the firs start. (it will be printed in the jenkis master container logs)
 ## 3) Jenkins slave:
 ### - use jenkins master ssh key
-## 4) Tomcat QA:
+## 4) Tomcat QA: (http://localhost:1080)
 ### - ```tsnapmanager:tsnappassword```
-## 5) Tomcat PROD:
+## 5) Tomcat PROD: (http://localhost:9080)
 ### - ```tmanager:tpassword```
 
 
