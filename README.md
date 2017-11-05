@@ -8,7 +8,7 @@
 ## - tomcat (QA)
 ## - tomcat (PROD)
 ## - jenkins slave
-### as a spawning contaienr, exit 0 after  docker-compose up
+### (as a spawning contaienr, exit 0 after  docker-compose up)
 
 
 # Persistent data:
@@ -30,11 +30,11 @@
 
 
 # Tips
-## - hosts file, add next lines in ```/etc/hosts``` to use names outside of the containers:
+## - hosts file, add the next lines in ```/etc/hosts``` to use names outside of the containers:
 ```
 127.0.0.1       gitlab jenkins gitlab.local jenkins.local tomcat.dev tomcat.prod
 ```
-## - ssh config: add next lines in ```~/.ssh/config``` to make easier use of gitlab:
+## - ssh config: add the next lines in ```~/.ssh/config``` to make easier use of gitlab:
 ```
 Host gitlab.local
     Port 1122
@@ -42,7 +42,7 @@ Host gitlab.local
 
 # EXTRA
 ## - to configure jenkins master to connect to docker daemon with network socket, docker daemon must be configured to listen to the network.
-### This is a sample with systemd dropin unit file, as root copy and paste next command:
+### This is a sample with systemd dropin unit file. As root, copy and paste the next commands:
 ```
 systemctl stop docker
 mkdir /etc/systemd/system/docker.service.d/

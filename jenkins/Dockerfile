@@ -14,13 +14,13 @@ RUN ln -s /opt/apache-maven-3.3.9 /opt/maven
 RUN ln -s /opt/maven/bin/mvn /usr/local/bin
 RUN rm -f /tmp/apache-maven-3.3.9.tar.gz
 # set shell variables for java installation 
-ENV java_version 1.8.0_11 
-ENV filename jdk-8u11-linux-x64.tar.gz 
-ENV downloadlink http://download.oracle.com/otn-pub/java/jdk/8u11-b12/$filename 
-# download java, accepting the license agreement 
-RUN wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/$filename $downloadlink 
-# unpack java 
-RUN mkdir /opt/java-oracle && tar -zxf /tmp/$filename -C /opt/java-oracle/
+#http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz
+ENV java_version 1.8.0_151
+ENV filename jdk-8u151-linux-x64.tar.gz
+ENV downloadlink http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/$filename
+# download java, accepting the license agreement
+RUN wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/$filename $downloadlink && mkdir /opt/java-oracle && tar -zxf /tmp/$filename -C /opt/java-oracle/ && rm -f /tmp/$filename
+ENV JAVA_HOME /opt/java-oracle/jdk$java_version/bin/java
 
 ###
 # Fix for https://github.com/dvdred/CI/issues/1
